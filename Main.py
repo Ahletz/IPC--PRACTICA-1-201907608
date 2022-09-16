@@ -1,9 +1,11 @@
 
-
+from Lista import *
 
 class Principal:
 
     def __init__(self):
+        
+        self.Listas = Lista()
         
         print('------BIENVENIDO A SHUCOS TITI !!------')
         print('0000000000000000000000000000000000000000  ---------------')
@@ -26,6 +28,8 @@ class Principal:
     def Menu(self):
 
         salida = True
+        self.No_orden = 1
+
         while salida == True:
 
             print()
@@ -41,7 +45,7 @@ class Principal:
             opcion = int(input())
 
             if opcion == 1:
-
+                
                 self.Nueva_orden()
 
             elif opcion == 2:
@@ -114,11 +118,11 @@ class Principal:
 
             #MOSTRAR LOS INGREDIENTES
             
-            print('|| 1.SALCHICHA - tiempo de preparacion: 2 minutos    ||')
-            print('|| 2.CHORIZO   - tiempo de preparacion: 3 minutos    ||')
-            print('|| 3.SALAMI    - tiempo de preparacion: 1.5 minutos  ||')
-            print('|| 4.LONGANIZA - tiempo de preparacion: 4 minutos    ||')
-            print('|| 5.COSTILLA  - tiempo de preparacion: 6 minutos    ||')
+            print('|| 1.SALCHICHA - tiempo de preparacion: 2 minutos    - Precio: Q 5.00  ||')
+            print('|| 2.CHORIZO   - tiempo de preparacion: 3 minutos    - Precio: Q 7.00  ||')
+            print('|| 3.SALAMI    - tiempo de preparacion: 1.5 minutos  - Precio: Q 7.00  ||')
+            print('|| 4.LONGANIZA - tiempo de preparacion: 4 minutos    - Precio: Q 6.00  ||')
+            print('|| 5.COSTILLA  - tiempo de preparacion: 6 minutos    - Precio: Q 10.00 ||')
             print()
 
             salida = True
@@ -130,26 +134,31 @@ class Principal:
                 if opcion == 1:
                     
                     print('||  Su shuco de SALCHICHA se ha agregado a la orde - tiempo de preparacion: 2 minutos ||')
+                    self.Listas.agregar(self.No_orden, nombre, nit, '5', 'SALCHICHA', '2')
                     salida = False
 
                 elif opcion == 2:
 
                     print('||  Su shuco de CHORIZO se ha agregado a la orde - tiempo de preparacion: 3 minutos   ||')
+                    self.Listas.agregar(self.No_orden, nombre, nit, '7', 'CHORIZO', '3')
                     salida = False
 
                 elif opcion == 3:
 
                     print('||  Su shuco de SALAMI se ha agregado a la orde - tiempo de preparacion: 1.5 minutos  ||')
+                    self.Listas.agregar(self.No_orden, nombre, nit, '7', 'SALAMI', '1.5')
                     salida = False
 
                 elif opcion == 4:
 
                     print('||  Su shuco de LONGANIZA se ha agregado a la orde - tiempo de preparacion: 4 minutos ||')
+                    self.Listas.agregar(self.No_orden, nombre, nit, '6', 'LONGANIZA', '4')
                     salida = False
 
                 elif opcion == 5:
 
                     print('||  Su shuco de COSTILLA se ha agregado a la orde - tiempo de preparacion: 6 minutos  ||')
+                    self.Listas.agregar(self.No_orden, nombre, nit, '10', 'COSTILLA', '6')
                     salida = False
 
                 else:
@@ -157,12 +166,21 @@ class Principal:
                     print('||------NO INGRESO UNA OPCION VALIDA!------||')
 
 
+        
+
         print()
         print('|| SU ORDEN ESTARA LISTA EN :   ||')
         #MOSTRAR TIEMPO DE SALIDA DE ORDEN
         print('|| HORA SALIDA DE ORDEN:        ||')
         #MOSTRAR TIEMPO EN LA VIDA REAL    
         print()
+
+        self.Listas.Imprimir()
+        print()
+
+        self.No_orden +=1
+
+        
 
     def Datos_desarollador(self):
 
