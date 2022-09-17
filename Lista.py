@@ -1,3 +1,5 @@
+from graphviz import Digraph
+
 class Nodo:
     def __init__(self, No_orden, cliente, nit, precio, ingrediente, tiempo):
 
@@ -86,14 +88,30 @@ class Lista:
 
         while actual != None:
 
-            contador = contador + int(actual.obtenertiempo())
+            contador = contador + float(actual.obtenertiempo())
             actual = actual.obtenerSiguienteOrden()
 
         if contador > 60:
 
-            contador 
+            i = contador
+            j = int(i/60)
+            k = i%60
 
-        return contador
+            tiempo = 'Hora: '+str(j) + ' Minutos: ' + str(k)
+
+            print()
+            print(tiempo)
+            print()
+
+        else:
+
+            tiempo = 'Minutos: '+str(contador) 
+
+            print()
+            print(tiempo)
+            print()
+
+        
 
     def Imprimir(self):
 
@@ -133,3 +151,38 @@ class Lista:
         else:
             previo.asignarSiguiente(actual.obtenerSiguienteOrden(), actual.obtenerSiguienteCliente(), actual.obtenerSiguienteNit(
             ), actual.obtenerSiguientePrecio(), actual.obtenerSiguienteIngrediente(), actual.obtenerSiguienteTiempo())
+
+    def tamano(self):
+        actual = self.head
+        contador = 0
+        while actual != None:
+            contador = contador + 1
+            actual = actual.obtenerSiguienteCliente()
+
+        return contador
+
+    def Graficar(self):
+
+        dot = Digraph ( 'COLA' , filename = 'COLA.dot' , engine = 'dot' , format = 'svg' )
+        dot.attr ( rankdir = "LR" )
+        dot.node_attr.update ( shape = "box" )
+        dot.node_attr [ 'style' ] = "filled"
+        
+        contador = 0
+        
+        actual = self.head
+        while actual != None:
+            
+            contador +=1
+            dot.node(str(contador),'ORDEN #'+str(actual.obtenerNO_orden())+' INGREDIENTE:'+actual.obteneringrediente())
+            actual = actual.obtenerSiguienteOrden()
+        
+
+        for i in range ( 1 , contador ) :
+            dot.edge ( str ( i ) , str ( i + 1 ) )
+        
+        dot.view()
+
+    
+
+

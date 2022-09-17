@@ -1,0 +1,9 @@
+digraph COLA {
+	node [shape=box style=filled]
+	rankdir=LR
+	1 [label="ORDEN #3 INGREDIENTE:CHORIZO"]
+	2 [label="ORDEN #3 INGREDIENTE:SALAMI"]
+	3 [label="ORDEN #3 INGREDIENTE:SALAMI"]
+	1 -> 2
+	2 -> 3
+}

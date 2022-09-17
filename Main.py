@@ -1,4 +1,5 @@
 
+from telnetlib import PRAGMA_HEARTBEAT
 from Lista import *
 
 class Principal:
@@ -28,7 +29,8 @@ class Principal:
     def Menu(self):
 
         salida = True
-        self.No_orden = 1
+        self.No_orden = 1 #NUMERO DE LAS ORDENES
+        self.Numero = 1 #NUMERO DE ORDENES DESPACHADAS
 
         while salida == True:
 
@@ -50,16 +52,16 @@ class Principal:
 
             elif opcion == 2:
 
-                ##SALIDA DE PRIMERA ORDEN DE LA LISTA 
-                pass
+                self.Despachar()
+                
 
             elif opcion == 3:
                 
-                pass
+                self.Eliminar_orden()
 
             elif opcion == 4:
                 
-                pass
+                self.Listas.Graficar()
 
             elif opcion == 5:
                 
@@ -170,9 +172,11 @@ class Principal:
 
         print()
         print('|| SU ORDEN ESTARA LISTA EN :   ||')
+
+        self.Listas.Tiempo_espera()
         #MOSTRAR TIEMPO DE SALIDA DE ORDEN
-        print('|| HORA SALIDA DE ORDEN:        ||')
-        #MOSTRAR TIEMPO EN LA VIDA REAL    
+
+        print('|| ORDENES EN COLA:             ||')   
         print()
 
         self.Listas.Imprimir()
@@ -193,6 +197,77 @@ class Principal:
         print('|| ludwingalexander230@gmail.com  ||')
         print('||--------------------------------||')
         print()
+
+    def Despachar(self):
+
+        
+        
+
+        while self.Listas.buscar(self.Numero):
+
+            if self.Listas.buscar(self.Numero):
+
+                self.Listas.Eliminar(self.Numero)
+        
+        if self.Listas.tamano()>1:
+
+            self.Numero += 1
+
+            print()
+            print('ORDEN #'+ str(self.Numero) + ' DESPACHADA!!!' )
+            print()
+
+            print()
+            print('ORDENES EN COLA: ' )
+            self.Listas.Imprimir()
+            print()
+
+
+        else:
+
+            print()
+            print('|| NO HAY ORDENES EN COLA ||')
+
+    def Eliminar_orden(self):
+
+        tamaño = self.Listas.tamano()
+
+        print()
+        print('|| SELECCION LA ORDEN QUE DESEA ELIMINAR:    ||')
+        print()
+
+        
+        print()
+        self.Listas.Imprimir()
+        print()
+        Numero = int(input())
+        print()
+
+        if Numero <= tamaño or Numero >= 1:
+            while self.Listas.buscar(Numero):
+
+                if self.Listas.buscar(Numero):
+
+                    self.Listas.Eliminar(Numero)
+
+            print()
+            print('|| ORDEN #'+ str(Numero) + ' ELIMINADA!! ||')
+            print()
+
+        else:
+
+            print()
+            print('|| ORDEN INEXISTENTE                     ||')
+            print()
+
+        print('|| ORDENES EN COLA:             ||')   
+        print()
+
+        self.Listas.Imprimir()
+        print()
+
+
+
 
         
 
